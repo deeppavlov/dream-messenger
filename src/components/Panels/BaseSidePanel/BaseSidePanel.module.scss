@@ -1,0 +1,36 @@
+.baseSidePanel {
+  position: relative;
+  width: 368px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: $bcgrnd1;
+  .container,
+  [role='tabpanel'] {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+}
+
+.close {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  top: 12px;
+  right: 24px;
+  align-self: center;
+  z-index: 1;
+  cursor: pointer;
+
+  path {
+    stroke: $text3;
+  }
+}
+
+@media (max-width: $small) {
+  .baseSidePanel {
+    width: 100vw;
+  }
+}

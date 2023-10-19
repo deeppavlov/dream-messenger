@@ -1,0 +1,37 @@
+.item {
+  position: relative;
+  width: 100%;
+  height: $mobile-topbar-height;
+  padding: 0 44px 0 44px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  color: $text1;
+  cursor: pointer;
+  z-index: 11;
+  border-top: 1px solid #f0f0f3;
+  @include lnks_n_btns5;
+
+  &:hover,
+  &:active {
+    background-color: $bcgrnd3;
+  }
+}
+
+.icon {
+  @include icon_size_24;
+  align-self: center;
+}
+
+.link {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 8px;
+  color: $text1;
+}

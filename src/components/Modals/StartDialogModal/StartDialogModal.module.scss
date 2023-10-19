@@ -1,0 +1,77 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+
+  position: relative;
+  width: 80%;
+  max-width: 700px;
+  max-height: 90%;
+  background-color: $bcgrnd1;
+  border-radius: 24px;
+  padding: 16px 0 16px 24px;
+  color: $text1;
+
+  box-shadow: 0px 0px 20px 0px #64636326;
+}
+
+.close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  cursor: pointer;
+
+  path {
+    stroke: $text3;
+  }
+}
+
+.header {
+  background-color: #fff;
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: center;
+  margin-right: $spcng16;
+  @include t2;
+
+  .circle {
+    width: 40px;
+    height: 40px;
+    background-color: #ebf8f1;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: auto;
+    flex-shrink: 0;
+  }
+}
+
+.body {
+  overflow-y: auto;
+  margin-top: 8px;
+  padding-right: 24px;
+
+  & p {
+    @include b2;
+  }
+}
+
+@media (max-width: $medium) {
+  .container {
+    width: 95%;
+  }
+}

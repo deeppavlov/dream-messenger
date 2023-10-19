@@ -1,0 +1,36 @@
+.toast {
+  color: #000000b3;
+  position: absolute;
+  bottom: $spcng24;
+  width: max-content;
+  max-width: 90%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid $red;
+  border-radius: 12px;
+  background-color: #ff33331a;
+  padding: 6px 8px;
+  @include b3;
+
+  .attention {
+    border-radius: 50%;
+    background-color: #ff33331a;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    svg {
+      path {
+        stroke: $red;
+        stroke-width: 1.5;
+      }
+      height: 16px;
+      width: 16px;
+    }
+  }
+}

@@ -1,0 +1,78 @@
+@import './typography/fonts.scss';
+@import './typography/variables.scss';
+@import './variables/colors.scss';
+@import './variables/dimensions.scss';
+@import './variables/spacings.scss';
+@import './typography/mixins.scss';
+@import './ui/mixins.scss';
+
+// Note: vite hot reload does not detect live changes in index.scss,
+// so you need to restart the build to see changes in browser.
+
+*,
+*::before,
+*::after {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+::-webkit-scrollbar {
+  width: $scrollbar-total-width; /* Total width including `border-width` of scrollbar thumb */
+  height: $scrollbar-total-width;
+  cursor: default;
+}
+::-webkit-scrollbar-thumb {
+  height: 70px;
+  border: $scrollbar-padding solid transparent; /* Transparent border together with `background-clip: padding-box` does the trick */
+  background-clip: padding-box;
+  border-radius: $scrollbar-border-radius;
+  -webkit-border-radius: $scrollbar-border-radius;
+  background-color: $bcgrnd5;
+  -webkit-box-shadow: inset 0 0 0 1px $bcgrnd5;
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+html,
+body {
+  overflow: auto;
+  width: 100%;
+  height: 100%;
+}
+a {
+  text-decoration: none;
+  color: #3300ff;
+}
+body {
+  color: $text1;
+  font-family: $main-font;
+  font-size: 18px;
+}
+button {
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+}
+li {
+  list-style: none;
+}
+
+p {
+  @include b1;
+}
+
+textarea {
+  cursor: auto;
+}
+
+:global {
+  .app {
+    height: 100%;
+    width: 100%;
+  }
+}
