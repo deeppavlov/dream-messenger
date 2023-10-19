@@ -1,0 +1,19 @@
+$topbar-height: 64px;
+$mobile-topbar-height: 56px;
+$sidebar-width: 80px;
+$topbar_btn: 24px;
+
+$radius1: 24px;
+$radius2: 12px;
+
+$stack_header_height: 53px;
+
+$scrollbar-padding: 6px;
+$scrollbar-thumb-width: 8px;
+$scrollbar-total-width: calc($scrollbar-thumb-width + ($scrollbar-padding * 2));
+$scrollbar-border-radius: calc($scrollbar-total-width / 2);
+
+$small: 576px;
+$medium: 768px;
+$large: 992px;
+$x-large: 1200px;

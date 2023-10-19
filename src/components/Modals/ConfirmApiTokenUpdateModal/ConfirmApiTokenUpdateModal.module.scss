@@ -1,0 +1,41 @@
+.confirmApiTokenUpdate {
+  width: 100%;
+  .h4 {
+    mark {
+      display: inline-flex;
+    }
+  }
+  max-width: 600px;
+}
+
+.desc {
+  @include t3;
+  color: $text3;
+  margin-top: 8px;
+}
+
+.btns {
+  margin-top: 24px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 24px;
+}
+
+@media (max-width: $small) {
+  .confirmApiTokenUpdate {
+    .h4 {
+      font-size: 20px;
+    }
+
+    .btns {
+      flex-direction: column-reverse;
+      gap: 8px;
+
+      & > * {
+        width: 100%;
+      }
+    }
+  }
+}

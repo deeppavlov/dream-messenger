@@ -1,0 +1,80 @@
+.baseModal {
+  min-width: 624px;
+  max-width: 80%;
+  max-height: 80%;
+  width: fit-content;
+  height: fit-content;
+  background-color: $bcgrnd1;
+  border-radius: 24px;
+  padding: 30px 0;
+  position: relative;
+  color: $text1;
+  display: flex;
+
+  .container {
+    width: 100%;
+    padding: 18px 64px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+    &::-webkit-scrollbar-thumb {
+      border: 0;
+    }
+  }
+
+  h4 {
+    @include t1;
+  }
+
+  mark {
+    display: block;
+    background-color: transparent;
+    color: $primary1;
+
+    @include text_ellipsis;
+  }
+}
+
+.close {
+  position: absolute;
+  top: 20px;
+  right: 24px;
+  width: 24px;
+  cursor: pointer;
+
+  path {
+    stroke: $text3;
+  }
+}
+
+@media (max-width: $medium) {
+  .baseModal {
+    min-width: auto;
+    max-width: 95%;
+  }
+}
+
+@media (max-width: $small) {
+  .baseModal {
+    min-width: auto;
+    max-width: 90%;
+    max-height: 80%;
+    padding: 25px 0;
+
+    .container {
+      padding: 7px 32px;
+      &::-webkit-scrollbar {
+        width: 6px;
+      }
+      &::-webkit-scrollbar-thumb {
+        border: 0;
+      }
+    }
+  }
+  .close {
+    top: 12px;
+    right: 12px;
+  }
+}

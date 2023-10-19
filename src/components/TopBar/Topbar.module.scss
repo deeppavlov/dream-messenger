@@ -1,0 +1,90 @@
+.topbar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  height: $topbar-height;
+  background-color: $bcgrnd1;
+  border-bottom: 1px solid $bcgrnd3;
+  box-shadow: 80px 0px 20px rgba(100, 99, 99, 0.15);
+  z-index: 3;
+  &.editor {
+    box-shadow: 78px 0px 20px rgba(100, 99, 99, 0.15);
+  }
+
+  .assistantName {
+    width: 100%;
+    white-space: nowrap;
+    @include b3;
+    padding: 0px 24px;
+    @include accent_text;
+    @include text_ellipsis;
+  }
+
+  .btns {
+    width: fit-content;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 64px;
+    padding: 16px 24px;
+
+    .alertIcon {
+      position: absolute;
+      right: 0;
+      top: 33px;
+      width: 18px;
+      height: 18px;
+    }
+  }
+
+  .crumbs {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0px 14px;
+    gap: 12px;
+    color: #3300ff;
+    background-color: $bcgrnd1;
+    h3 {
+      font-weight: 600;
+      font-size: 18px;
+      line-height: 160%;
+    }
+  }
+}
+
+.tooltips {
+  @include tooltip;
+  &::after {
+    top: -2px !important;
+  }
+}
+
+@media (max-width: $small) {
+  .topbar {
+    background-color: $bcgrnd2;
+    padding: 0 20px;
+    gap: 4px;
+    height: $mobile-topbar-height;
+    box-shadow: none;
+
+    .assistantName {
+      white-space: nowrap;
+      @include b3;
+      padding: 0;
+      color: #000000e6;
+    }
+
+    .btns {
+      padding: 0;
+
+      & button {
+        height: $mobile-topbar-height;
+      }
+    }
+  }
+}

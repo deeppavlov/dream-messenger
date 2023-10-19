@@ -1,0 +1,105 @@
+.field {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: max-content;
+  min-height: 48px;
+  border: 1px solid $text3;
+  border-radius: 12px;
+  background-color: $bcgrnd1;
+  padding: 7px 0 7px 24px;
+  overflow: hidden;
+
+  &.focus {
+    box-shadow: 0px 0px 0px 3px rgba(41, 0, 204, 0.3);
+    border-color: $primary1;
+  }
+  &.active {
+    box-shadow: none;
+  }
+  &.disabled {
+    opacity: 0.3;
+  }
+}
+
+.textArea {
+  @include b2;
+  width: 100%;
+  max-height: 103px; // font-weight * line-height * row count
+  overflow-y: auto;
+  border: none;
+  outline: none;
+  resize: none;
+  padding-right: 24px;
+
+  &.withBtn {
+    padding-right: 64px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 20px;
+    border: 0;
+  }
+
+  &::placeholder {
+    color: $text3;
+    opacity: 0.4;
+  }
+  &:disabled {
+    background-color: $bcgrnd1;
+  }
+}
+
+.sendBtn {
+  position: absolute;
+  bottom: 0;
+  right: 12px;
+  height: 48px;
+  width: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include lnks_n_btns3;
+  svg {
+    @include icon_size_24;
+  }
+  &:disabled {
+    &:hover {
+      box-shadow: none;
+    }
+    cursor: default;
+    opacity: 0.3;
+  }
+  background-color: $primary1;
+  color: $text4;
+
+  &:active {
+    background-color: $primary4;
+  }
+}
+
+@media (max-width: $small) {
+  .field {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+
+    &.focus {
+      box-shadow: none;
+    }
+
+    &.withBtn {
+      padding-right: 48px;
+    }
+  }
+
+  .textArea::-webkit-scrollbar-thumb {
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+}

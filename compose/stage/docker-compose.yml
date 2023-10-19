@@ -1,0 +1,19 @@
+services:
+
+  messenger:
+    container_name: stage-messenger
+    build:
+      context: ../../.
+      dockerfile: ./Dockerfile
+      args:
+        MODE: stage
+    ports:
+      - "6996:5173"
+    deploy:
+      resources:
+        limits:
+          memory: 256M
+        reservations:
+          memory: 256M
+
+version: '3.7'

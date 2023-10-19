@@ -1,0 +1,45 @@
+.item {
+  position: relative;
+  width: 100%;
+  height: 48px;
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: row;
+  text-align: start;
+  gap: 8px;
+  color: $text1;
+  cursor: pointer;
+  z-index: 11;
+  @include lnks_n_btns5;
+
+  &:hover {
+    background-color: $bcgrnd3;
+  }
+
+  &:disabled,
+  &.disabled {
+    @include disabled;
+  }
+}
+
+.icon {
+  @include icon_size_24;
+  align-self: center;
+}
+
+.link {
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  text-align: start;
+  justify-content: flex-start;
+  gap: 8px;
+}
+.dark {
+  .icon path {
+    stroke: $text2;
+  }
+}

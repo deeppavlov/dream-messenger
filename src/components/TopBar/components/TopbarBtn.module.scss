@@ -1,0 +1,65 @@
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 63px;
+  width: 40px;
+  position: relative;
+  svg {
+    @include icon_size_24;
+  }
+
+  // styles only for the first button (key + notification)
+  &.active {
+    background-color: $primary3;
+    & > :first-child path {
+      fill: $primary4;
+      stroke: none;
+    }
+  }
+  &:hover {
+    background-color: $primary3;
+    & path {
+      fill: $primary_btn;
+      stroke: none;
+    }
+  }
+  &:active {
+    & path {
+      fill: $primary4;
+      stroke: none;
+    }
+  }
+}
+
+.disabled {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 63px;
+  width: 40px;
+  position: relative;
+  svg {
+    @include icon_size_24;
+  }
+}
+
+.tooltips {
+  height: 45px;
+  background: #8d96b5 !important;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  padding: 4px 12px !important;
+  gap: 10px !important;
+  border-radius: 8px !important;
+  box-shadow: 0px 8px 15px rgba(14, 1, 66, 0.15);
+  z-index: 3;
+  offset: 30%;
+  font-size: 18px;
+  line-height: 160%;
+  color: #ffffff;
+  &::after {
+    left: 20% !important;
+  }
+}

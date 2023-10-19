@@ -1,0 +1,348 @@
+@mixin icon_size_24 {
+  width: 24px;
+  height: 24px;
+}
+@mixin icon_size_12 {
+  width: 12px;
+  height: 12px;
+}
+@mixin large_btn {
+  padding: 0px 24px;
+  height: 48px;
+  border-radius: 12px;
+}
+@mixin small_btn {
+  padding: 0px 24px;
+  gap: 4px;
+  height: 36px;
+  border-radius: 8px;
+}
+@mixin primary_btn {
+  color: $text4;
+  background-color: $primary_btn;
+}
+@mixin secondary_btn {
+  color: $text1;
+  background-color: $secondary_btn;
+}
+@mixin btn_primary_behavior {
+  &:hover {
+    box-shadow: 0px 8px 15px rgba(14, 1, 66, 0.15);
+  }
+  &:active {
+    background-color: #190080;
+  }
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+@mixin btn_secondary_behavior {
+  &:hover {
+    box-shadow: 0px 8px 15px rgba(14, 1, 66, 0.15);
+  }
+  &:active {
+    background: #cfd3e2;
+  }
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+@mixin btn_primary_small_behavior {
+  &:hover {
+    box-shadow: 0px 0px 0px 3px rgba(41, 0, 204, 0.3);
+  }
+  &:active {
+    background-color: #190080;
+  }
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+@mixin btn_secondary_small_behavior {
+  &:hover {
+    background-color: #3300ff;
+    color: #fff;
+  }
+  &:active {
+    background-color: #e3e3e8;
+    color: rgba(0, 0, 0, 0.9);
+  }
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+@mixin input_behavior {
+  &:hover {
+    border: 1px solid #190080;
+  }
+  &::placeholder {
+    color: $text3;
+  }
+  &:focus {
+    border: 1px solid $primary1;
+    box-shadow: 0px 0px 0px 3px rgba(41, 0, 204, 0.3);
+  }
+  &:active {
+    border: 1px solid $text3;
+    color: $text1;
+  }
+}
+// Works only with RGB color code
+@mixin dashed-bg($border-color, $border-radius) {
+  background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='rgb(249, 250, 252)' rx='" + $border-radius + "' ry='" + $border-radius + "' stroke='" + $border-color + "' stroke-width='1' stroke-dasharray='5%2c 5' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+}
+
+@mixin btn_add-bot-card_behavior($border-radius) {
+  @include dashed-bg(rgb(141, 150, 181), $border-radius);
+
+  &:hover {
+    @include dashed-bg(rgb(51, 0, 255), $border-radius);
+  }
+  &:active {
+    background-image: none;
+    background-color: $bcgrnd1;
+    border: 1px solid rgb(51, 0, 255);
+  }
+  // &:disabled {
+  //   opacity: 0.3;
+  // }
+}
+@mixin bot-card_behavior {
+  &:hover,
+  &:focus-within,
+  &[data-active='true'] {
+    border: 1px solid #3300ff;
+    box-shadow: 0px 0px 20px rgba(100, 99, 99, 0.15);
+  }
+  &:active {
+    border: 1px solid #3300ff;
+    box-shadow: none;
+  }
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+@mixin ghost_btn {
+  color: rgba(0, 0, 0, 0.9);
+  text-decoration: underline;
+  @include b3;
+}
+@mixin btn_ghost_behavior {
+  &:hover {
+    color: #3300ff;
+  }
+  &:active {
+    color: #190080;
+  }
+  &:disabled {
+    opacity: 0.3;
+    text-decoration: none;
+  }
+}
+@mixin btn_close_behavior {
+  &:hover svg {
+    stroke: #ff3333;
+  }
+  &:active svg {
+    stroke: #190080;
+  }
+  &:disabled svg {
+    opacity: 0.3;
+  }
+}
+@mixin btn_topbar_behavior {
+  &:hover {
+    stroke: #ff3333;
+  }
+  &:active {
+    stroke: #190080;
+  }
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+
+@mixin min_h-w {
+  min-height: 720px;
+  min-width: 1200px;
+}
+@mixin max_h-w {
+  max-width: 1290px;
+}
+@mixin min-w {
+  min-width: 1200px;
+}
+@mixin sticky {
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+@mixin icon_color {
+  fill: #8d96b5;
+}
+@mixin icon_behavior {
+  &:hover {
+    fill: #3300ff;
+  }
+  &:active {
+    fill: #190080;
+  }
+  &:disabled {
+    opacity: 0.3;
+  }
+}
+@mixin sidebar_btn_height {
+  height: 40px;
+}
+@mixin stack_element_behavior {
+  &:hover {
+    color: $primary1;
+    .data {
+      color: $primary1;
+    }
+  }
+  &:active,
+  &[data-active='true'],
+  &:focus-within {
+    color: #190080;
+    background: rgba(51, 0, 255, 0.1);
+
+    .data {
+      color: #190080;
+    }
+  }
+}
+
+@mixin tooltip {
+  display: flex;
+  text-align: start;
+  padding: 8px 16px;
+  background: $text3;
+  border-radius: 8px;
+  box-shadow: 0px 8px 15px rgba(14, 1, 66, 0.15);
+  @include b1;
+  color: $text4;
+  z-index: 11;
+  transition:
+    opacity 0.5s ease-in-out,
+    visibility 0.5s ease-out !important;
+}
+
+@mixin tooltip_small {
+  @include tooltip;
+  @include b2;
+}
+
+@mixin tooltip_for_description {
+  @include tooltip;
+  @include b3;
+  height: fit-content;
+  max-width: 400px;
+}
+
+@mixin tr_behavior {
+  &:hover,
+  &[data-active='true'] {
+    * {
+      cursor: pointer;
+    }
+    td {
+      .params,
+      .description,
+      .skillName,
+      .botName,
+      .ddmmyyyy,
+      .time {
+        color: #3300ff;
+      }
+    }
+  }
+
+  &:active,
+  &[data-active='true'] {
+    td {
+      background-color: rgba(51, 0, 255, 0.1);
+    }
+  }
+
+  // background-color: rgba(51, 0, 255, 0.1);
+}
+
+@mixin slider_btns {
+  position: absolute;
+  top: 47.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: #ffffff;
+  border: 2px solid #8d96b5;
+  border-radius: 50%;
+  cursor: pointer;
+  &:hover {
+    border: 2px solid $primary1;
+    svg {
+      stroke: $primary1;
+    }
+  }
+  &:active {
+    border: 2px solid $primary4;
+    svg {
+      stroke: $primary4;
+    }
+  }
+  svg {
+    stroke: #8d96b5;
+    @include icon_size_24;
+  }
+}
+@mixin hide_text {
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+@mixin disabled {
+  opacity: 0.3;
+}
+@mixin min_max_height {
+  min-height: 238px;
+  max-height: 238px;
+}
+@mixin min_max_height_skill {
+  min-height: 240px;
+  max-height: 240px;
+}
+@mixin separator {
+  height: 1px;
+  width: 100%;
+  border-top: 1px dashed $text3;
+}
+@mixin forGrid {
+  max-width: 344px;
+}
+@mixin skeleton_loader {
+  background: linear-gradient(
+      100deg,
+      rgba(255, 255, 255, 0) 40%,
+      rgba(255, 255, 255, 0.5) 50%,
+      rgba(255, 255, 255, 0) 60%
+    )
+    #dcdcdfa8;
+  background-size: 200% 100%;
+  background-position-x: 180%;
+  animation: 3s loading ease-in-out infinite;
+
+  @keyframes loading {
+    to {
+      background-position-x: -20%;
+    }
+  }
+}
+
+@mixin text_ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

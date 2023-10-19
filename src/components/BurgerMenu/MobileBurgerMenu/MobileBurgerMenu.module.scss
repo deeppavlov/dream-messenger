@@ -1,0 +1,62 @@
+.burger {
+  position: relative;
+  width: 64px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .button {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: none;
+    padding: 8px 4px;
+    background-color: $bcgrnd2;
+    cursor: pointer;
+    img {
+      width: 30px;
+      height: auto;
+    }
+    svg {
+      @include icon_size_24;
+      @include icon_color;
+      @include icon_behavior;
+      transition: all 0.3s ease-in-out;
+    }
+  }
+}
+.backdrop {
+  position: absolute;
+  width: 100vw;
+  height: calc(100% - $mobile-topbar-height);
+  // can't use 100vh because of a problem in chrome mobile
+  top: $mobile-topbar-height;
+
+  background-color: #00000066;
+  visibility: hidden;
+  overflow: hidden;
+
+  .menu {
+    position: relative;
+    background-color: $bcgrnd2;
+    width: 100%;
+    top: -100%;
+
+    transition: all 0.5s ease-in-out;
+  }
+
+  &.open {
+    visibility: visible;
+
+    & .menu {
+      top: 0;
+    }
+  }
+}
+
+.rotate {
+  transform: rotateX(180deg);
+}
