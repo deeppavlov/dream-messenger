@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import ReactGA from 'react-ga4'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { ChatHistoryProvider } from 'context/ChatContext'
@@ -14,6 +15,10 @@ const queryClient = new QueryClient({
     },
   },
 })
+
+if (import.meta.env.MODE !== 'DEV') {
+  ReactGA.initialize(import.meta.env.VITE_GOOGLE_ANALYTICS)
+}
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <UIOptionsProvider>
