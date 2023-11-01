@@ -18,6 +18,7 @@ const getEventBody = async (assistant: BotInfoInterface) => {
       .map(skill => skill.lm_service?.display_name)
       .filter(name => Boolean(name))
       .join('; '),
+    event_type: 'Messenger',
   }
 }
 
