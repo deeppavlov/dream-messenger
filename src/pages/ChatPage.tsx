@@ -2,6 +2,7 @@ import { useUIOptions } from 'context'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { KEYS_MISSING } from 'constants/constants'
+import { useGaChat } from 'hooks/googleAnalytics/useGaChat'
 import { useAssistants } from 'hooks/useAssistants'
 import { checkRequiredKeysAvailability } from 'utils/checkRequiredKeysAvailability'
 import DialogModule from 'components/DialogModule/DialogModule'
@@ -17,12 +18,15 @@ const ChatPage = () => {
   const { getDist } = useAssistants()
   const { data: bot, error } = getDist({ distName: vaName })
   const { setUIOption } = useUIOptions()
+  const { chatOpened } = useGaChat()
 
   useEffect(() => {
     setUIOption({
       name: KEYS_MISSING,
       value: !checkRequiredKeysAvailability(bot!),
     })
+
+    bot && chatOpened(bot)
   }, [bot])
 
   return !error ? (
