@@ -21,6 +21,14 @@ export type ComponentType =
   | 'script'
   | 'script_with_nns'
 
+export type StackType =
+  | 'annotators'
+  | 'candidate_annotators'
+  | 'response_annotators'
+  | 'response_selectors'
+  | 'skill_selectors'
+  | 'skills'
+
 export type ModelType = 'dictionary' | 'ml_based' | 'nn_based' | 'external'
 
 export interface IStackElement {
@@ -88,6 +96,14 @@ export interface LM_Service {
 export interface ISkill extends IStackElement {
   prompt?: string
   lm_service?: LM_Service
+}
+
+type StackTypeMap = {
+  [key in StackType]: IStackElement[]
+}
+
+export interface TComponents extends StackTypeMap {
+  skills: ISkill[]
 }
 
 export type ChatHistory = {

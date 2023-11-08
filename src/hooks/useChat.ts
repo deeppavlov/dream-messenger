@@ -7,6 +7,7 @@ import { BotInfoInterface, IPostChat, SessionConfig } from 'types/types'
 import { useChatHistory } from 'context/ChatContext'
 // import { DEBUG_EN_DIST, DEBUG_RU_DIST } from 'constants/constants'
 import { createDialogSession, getHistory, sendMessage } from 'api/chat'
+import { useGaChat } from './googleAnalytics/useGaChat'
 
 const DEBUG_EN_DIST = 'universal_prompted_assistant'
 const DEBUG_RU_DIST = 'universal_ru_prompted_assistant'
@@ -18,6 +19,7 @@ export const useChat = () => {
 
   const client = useQueryClient()
   const { vaName } = useParams()
+  const { chatSend, chatRefresh } = useGaChat()
 
   const bot = client.getQueryData<BotInfoInterface | undefined>([
     'dist',
@@ -34,6 +36,7 @@ export const useChat = () => {
       store(data + '_session') ? store.remove(data + '_session') : null
       setMessage('')
       setHistory([])
+      chatRefresh(bot!)
     },
     mutationFn: (data: string) => createDialogSession(data),
     onSuccess: (data, variables) => {
@@ -49,6 +52,7 @@ export const useChat = () => {
     onMutate: ({ text }: IPostChat) => {
       setMessage(text)
       setHistory(state => [...state, { text, author: 'user' }])
+      chatSend(bot!, history.length)
     },
     mutationFn: (variables: IPostChat) => sendMessage(variables),
     onSuccess: data => {
