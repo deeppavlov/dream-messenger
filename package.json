@@ -11,6 +11,7 @@
     "build-dev": "vite build --mode DEV",
     "build-stage": "vite build --mode STAGE",
     "build-prod": "vite build --mode PROD",
+    "build-demo": "vite build --mode DEMO",
     "preview": "vite preview --port 5173",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
