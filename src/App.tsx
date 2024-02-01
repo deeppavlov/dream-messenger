@@ -18,9 +18,6 @@ const App = () => {
         </Routes>
         <BaseSidePanel />
       </BrowserRouter>
-
-      <AccessTokensModal />
-      <TokenRequiredModal />
       <Toaster />
     </>
   )

@@ -2,12 +2,12 @@ import { useUIOptions } from 'context'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import store from 'store2'
-import { KEYS_MISSING, START_DIALOG_MODAL_IS_OPEN } from 'constants/constants'
+import { START_DIALOG_MODAL_IS_OPEN } from 'constants/constants'
 import SvgIcon from 'components/SvgIcon/SvgIcon'
 import s from './StartDialogModal.module.scss'
 
 const StartDialogModal = () => {
-  const { UIOptions, setUIOption } = useUIOptions()
+  const { setUIOption } = useUIOptions()
   const { t } = useTranslation()
   const dialogIsStarted = Boolean(store.get('started'))
   const [isOpen, setIsOpen] = useState(!dialogIsStarted)
@@ -18,12 +18,12 @@ const StartDialogModal = () => {
   }
 
   useEffect(() => {
-    setIsOpen(!UIOptions[KEYS_MISSING] && !dialogIsStarted)
+    setIsOpen(!dialogIsStarted)
     setUIOption({
       name: START_DIALOG_MODAL_IS_OPEN,
-      value: !UIOptions[KEYS_MISSING] && !dialogIsStarted,
+      value: !dialogIsStarted,
     })
-  }, [UIOptions[KEYS_MISSING], dialogIsStarted])
+  }, [dialogIsStarted])
 
   return (
     isOpen && (

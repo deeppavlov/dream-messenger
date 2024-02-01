@@ -1,10 +1,8 @@
 import { useUIOptions } from 'context'
 import { useParams } from 'react-router-dom'
 import {
-  KEYS_MISSING,
   RIGHT_SP_IS_ACTIVE,
   SHARE_MODAL_IS_OPEN,
-  TOKEN_KEY_MODAL_IS_OPEN,
   TRIGGER_RIGHT_SP_EVENT,
 } from 'constants/constants'
 import { useAssistants } from 'hooks/useAssistants'
@@ -26,10 +24,6 @@ export const Topbar = () => {
   const bot = getCachedDist(vaName!)
 
   const { isScreenXs } = useResize()
-
-  const handleEnterToken = () => {
-    trigger('AccessTokensModal', {})
-  }
 
   const handleShare = () => {
     trigger('ShareAssistantModal', {})
@@ -54,20 +48,6 @@ export const Topbar = () => {
       <div className={s.btns}>
         {!isScreenXs ? (
           <>
-            <TopbarBtn
-              active={
-                UIOptions[TOKEN_KEY_MODAL_IS_OPEN] || UIOptions[KEYS_MISSING]
-              }
-              handleClick={handleEnterToken}
-            >
-              <SvgIcon iconName='key' />
-              {UIOptions[KEYS_MISSING] && (
-                <SvgIcon
-                  iconName='alert'
-                  svgProp={{ className: s.alertIcon }}
-                />
-              )}
-            </TopbarBtn>
             <TopbarBtn
               active={UIOptions[SHARE_MODAL_IS_OPEN]}
               handleClick={handleShare}

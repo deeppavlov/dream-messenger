@@ -5,7 +5,6 @@ import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
 import { BotInfoInterface, ChatForm, ChatHistory } from 'types/types'
 import {
-  KEYS_MISSING,
   OPEN_AI_LM,
   RIGHT_SP_IS_ACTIVE,
   START_DIALOG_MODAL_IS_OPEN,
@@ -70,16 +69,8 @@ const DialogModule = ({ bot }: Props) => {
   }, [bot])
 
   useEffect(() => {
-    setFormDisabled(
-      UIOptions[START_DIALOG_MODAL_IS_OPEN] || UIOptions[KEYS_MISSING] || !bot
-    )
-  }, [
-    UIOptions[START_DIALOG_MODAL_IS_OPEN],
-    UIOptions[KEYS_MISSING],
-    renew,
-    send,
-    bot,
-  ])
+    setFormDisabled(UIOptions[START_DIALOG_MODAL_IS_OPEN] || !bot)
+  }, [UIOptions[START_DIALOG_MODAL_IS_OPEN], renew, send, bot])
 
   useChatScroll(chatRef, [history, message, remoteHistory])
 
