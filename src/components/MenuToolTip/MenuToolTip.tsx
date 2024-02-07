@@ -43,7 +43,7 @@ const MenuToolTip = ({ tooltipId }: Props) => {
     <BaseContextMenu tooltipId={tooltipId} place='bottom'>
       <ContextMenuButton
         type='dream'
-        linkTo='http://deepdream.builders'
+        linkTo='https://aicenter.mipt.ru/'
         name={t('main_burger.about')}
       />
 
