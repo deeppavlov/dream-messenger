@@ -1,16 +1,11 @@
-import { useUIOptions } from 'context'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from 'react-query'
-import store from 'store2'
 import { IApiService, IUserApiKey, LM_Service } from 'types/types'
-import { KEYS_MISSING } from 'constants/constants'
 import { toasts } from 'mapping/toasts'
 import { getTokens } from 'api/getTokens'
-import { useAssistants } from 'hooks/useAssistants'
-import { checkRequiredKeysAvailability } from 'utils/checkRequiredKeysAvailability'
 import { trigger } from 'utils/events'
 import { getApiKeysLSId, getLSApiKeys } from 'utils/getLSApiKeys'
 import { getValidationSchema } from 'utils/getValidationSchema'
@@ -36,18 +31,6 @@ export const AccessTokensModule = () => {
   })
   const localStorageName = getApiKeysLSId()
   const validationSchema = getValidationSchema()
-
-  const { setUIOption } = useUIOptions()
-  const { getCachedDist } = useAssistants()
-  const bot = getCachedDist(store.get('vaName'))
-
-  const handleChanges = () => {
-    trigger('AccessTokensChanged', {})
-    setUIOption({
-      name: KEYS_MISSING,
-      value: !checkRequiredKeysAvailability(bot!),
-    })
-  }
 
   const clearTokens = () => localStorage.removeItem(localStorageName)
 
@@ -76,9 +59,7 @@ export const AccessTokensModule = () => {
     })
 
   const handleRemoveBtnClick = (token_id: number) => {
-    toast
-      .promise(deleteToken(token_id), toasts().deleteToken)
-      .finally(() => handleChanges())
+    toast.promise(deleteToken(token_id), toasts().deleteToken)
   }
 
   const updateToken = (index: number, token: IUserApiKey) =>
@@ -136,13 +117,11 @@ export const AccessTokensModule = () => {
     })
 
   const onSubmit = (data: FormValues) => {
-    toast
-      .promise(createUserToken(data), {
-        loading: t('modals.access_api_keys.toasts.token_adding'),
-        success: data => `${data}`,
-        error: data => `${data}`,
-      })
-      .finally(() => handleChanges())
+    toast.promise(createUserToken(data), {
+      loading: t('modals.access_api_keys.toasts.token_adding'),
+      success: data => `${data}`,
+      error: data => `${data}`,
+    })
     reset()
   }
 

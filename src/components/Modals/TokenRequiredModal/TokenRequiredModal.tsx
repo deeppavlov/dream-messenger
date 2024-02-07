@@ -1,5 +1,5 @@
 import { useUIOptions } from 'context'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import store from 'store2'
 import { KEYS_MISSING, TOKEN_KEY_MODAL_IS_OPEN } from 'constants/constants'
@@ -23,10 +23,6 @@ const TokenRequiredModal = () => {
   const handleEnterTokenClick = () => {
     trigger('AccessTokensModal', {})
   }
-
-  useEffect(() => {
-    setIsOpen(UIOptions[KEYS_MISSING] && !UIOptions[TOKEN_KEY_MODAL_IS_OPEN])
-  }, [UIOptions[KEYS_MISSING], UIOptions[TOKEN_KEY_MODAL_IS_OPEN]])
 
   const setOpen = (isOpen: boolean) => {
     isOpen

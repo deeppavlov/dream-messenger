@@ -1,6 +1,6 @@
 import { useUIOptions } from 'context'
 import { useEffect, useState } from 'react'
-import { KEYS_MISSING, TOKEN_KEY_MODAL_IS_OPEN } from 'constants/constants'
+import { TOKEN_KEY_MODAL_IS_OPEN } from 'constants/constants'
 import { useObserver } from 'hooks/useObserver'
 import { BaseModal } from 'components/Modals'
 import { ConfirmApiTokenUpdate } from '../ConfirmApiTokenUpdateModal/ConfirmApiTokenUpdateModal'
@@ -9,7 +9,7 @@ import { AccessTokensModule } from './AccessTokensModule/AccessTokensModule'
 
 export const AccessTokensModal = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { setUIOption, UIOptions } = useUIOptions()
+  const { setUIOption } = useUIOptions()
 
   const handleEventUpdate = () => setIsOpen(true)
 
@@ -26,7 +26,7 @@ export const AccessTokensModal = () => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         modalClassName={s.accessTokensModal}
-        closeOnBackdropClick={!UIOptions[KEYS_MISSING]}
+        closeOnBackdropClick
       >
         <AccessTokensModule />
       </BaseModal>
