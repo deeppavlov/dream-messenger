@@ -69,11 +69,6 @@ const MobileBurgerMenu = ({ bot }: { bot: BotInfoInterface }) => {
               handleClick={() => setIsOpen(false)}
             />
             <MobileBurgerBtn
-              type='key'
-              name={t('assistant_burger.tokens')}
-              handleClick={handleEnterToken}
-            />
-            <MobileBurgerBtn
               type='share'
               name={t('assistant_burger.share')}
               handleClick={handleShare}
