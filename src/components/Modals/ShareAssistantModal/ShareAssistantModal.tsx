@@ -14,7 +14,7 @@ import { SHARE_MODAL_IS_OPEN } from 'constants/constants'
 import { useObserver } from 'hooks/useObserver'
 import { Button } from 'components/Buttons'
 import { Input } from 'components/Input/Input'
-import { BaseModal } from 'components/Modals'
+import { BaseModal, MockModal } from 'components/Modals'
 import { ToastCopySucces } from 'components/UI'
 import s from './ShareAssistantModal.module.scss'
 
@@ -24,6 +24,7 @@ export const ShareAssistantModal = () => {
     keyPrefix: 'modals.share_assistant',
   })
   const [isOpen, setIsOpen] = useState(false)
+  const [isOpenMockModal, setIsOpenMockModal] = useState(false)
   const { setUIOption } = useUIOptions()
 
   const handleEventUpdate = () => {
@@ -59,14 +60,22 @@ export const ShareAssistantModal = () => {
           <div className={s.main}>
             <div className={s.icons}>
               <VKShareButton
+                onClick={() => {
+                  setIsOpenMockModal(true)
+                }}
                 title={shareText}
                 children={<VKIcon />}
                 url={url}
+                openShareDialogOnClick={false}
               />
               <TelegramShareButton
+                onClick={() => {
+                  setIsOpenMockModal(true)
+                }}
                 title={shareText}
                 children={<TelegramIcon />}
                 url={url}
+                openShareDialogOnClick={false}
               />
             </div>
           </div>
@@ -91,6 +100,10 @@ export const ShareAssistantModal = () => {
           </div>
         </div>
       </BaseModal>
+      <MockModal
+        isOpenModal={isOpenMockModal}
+        setIsOpenMock={setIsOpenMockModal}
+      />
     </>
   )
 }
