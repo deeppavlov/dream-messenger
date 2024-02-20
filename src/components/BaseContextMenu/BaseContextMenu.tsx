@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 import 'react-tooltip/dist/react-tooltip.css'
+import { subscribe, unsubscribe } from 'utils/events'
 // import { useCheckClickOutside } from 'hooks/useCheckClickOutside'
 // import { useCheckDocumentScroll } from 'hooks/useCheckDocumentScroll'
 // import { subscribe, unsubscribe } from 'utils/events'
@@ -29,6 +30,15 @@ const BaseContextMenu: React.FC<Props> = ({
 }) => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
 
+  useEffect(() => {
+    if (isOpen) {
+      subscribe('CtxMenuBtnClick', () => setIsOpen(false))
+    }
+    return () => {
+      unsubscribe('CtxMenuBtnClick', () => setIsOpen(false))
+    }
+  }, [isOpen])
+
   return (
     <ReactTooltip
       className={s.contextMenu}
@@ -36,7 +46,9 @@ const BaseContextMenu: React.FC<Props> = ({
       openOnClick
       clickable
       isOpen={isOpen}
-      setIsOpen={setIsOpen}
+      setIsOpen={(newValue: boolean) => {
+        setIsOpen(prev => (prev ? false : newValue))
+      }}
       place={place}
     >
       <div>{children}</div>
