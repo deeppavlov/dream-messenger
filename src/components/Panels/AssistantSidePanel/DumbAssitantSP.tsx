@@ -1,14 +1,15 @@
-import { useUIOptions } from 'context'
-import { useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import ArrowDown from 'assets/icons/arrow_dwn.svg'
-import DB from 'assets/icons/logo.png'
-import { BotInfoInterface } from 'types/types'
-import { ACTIVE_ASSISTANT_SP_ID } from 'constants/constants'
-import { Button } from 'components/Buttons'
-import { SidePanelHeader } from 'components/Panels'
-import SvgIcon from 'components/SvgIcon/SvgIcon'
-import s from './DumbAssitantSP.module.scss'
+import { useUIOptions } from 'context';
+import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
+import ArrowDown from 'assets/icons/arrow_dwn.svg';
+import DB from 'assets/icons/logo.png';
+import { BotInfoInterface } from 'types/types';
+import { ACTIVE_ASSISTANT_SP_ID } from 'constants/constants';
+import { Button } from 'components/Buttons';
+import { SidePanelHeader } from 'components/Panels';
+import SvgIcon from 'components/SvgIcon/SvgIcon';
+import s from './DumbAssitantSP.module.scss';
+
 
 interface Props {
   bot: BotInfoInterface
@@ -20,7 +21,9 @@ const DumbAssistantSP = ({ bot }: Props) => {
 
   const isDeepyPavlova =
     import.meta.env.VITE_SUB_FOR_DEFAULT_TEMPLATES === bot?.author?.outer_id
-  const author = isDeepyPavlova ? 'Dream Builder Team' : bot?.author?.name
+  const author = isDeepyPavlova
+    ? 'Лаборатория нейронных систем и глубокого обучения'
+    : bot?.author?.name
 
   const { MODE } = import.meta.env
   const url = import.meta.env[`VITE_BUILDER_REDIRECT_${MODE}`]
