@@ -20,7 +20,13 @@ const ChatPage = () => {
     bot && chatOpened(bot)
   }, [bot])
 
-  return !error ? (
+  useEffect(() => {
+    const { MODE } = import.meta.env
+    const url = import.meta.env[`VITE_BUILDER_REDIRECT_${MODE}`]
+    if (error) window.location.href = url
+  }, [error])
+
+  return (
     <>
       <Topbar />
       <Sidebar />
@@ -30,8 +36,6 @@ const ChatPage = () => {
       </Main>
       <ShareAssistantModal />
     </>
-  ) : (
-    <PageErrorHandler status={404} />
   )
 }
 
