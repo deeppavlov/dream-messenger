@@ -15,7 +15,7 @@
   }
 
   .assistantName {
-    width: 100%;
+    flex-grow: 1;
     white-space: nowrap;
     @include b3;
     padding: 0px 24px;
@@ -30,6 +30,7 @@
     justify-content: flex-end;
     height: 64px;
     padding: 16px 24px;
+    flex-shrink: 0;
 
     .alertIcon {
       position: absolute;
@@ -37,6 +38,9 @@
       top: 33px;
       width: 18px;
       height: 18px;
+    }
+    a {
+      margin-right: 12px;
     }
   }
 
@@ -82,7 +86,11 @@
     .btns {
       padding: 0;
 
-      & button {
+      a {
+        margin-right: 4px;
+      }
+
+      & > button {
         height: $mobile-topbar-height;
       }
     }
