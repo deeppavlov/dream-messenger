@@ -64,7 +64,7 @@ const MobileBurgerMenu = ({ bot }: { bot: BotInfoInterface }) => {
           <div className={s.menu}>
             <MobileBurgerBtn
               type='dream'
-              linkTo='http://deepdream.builders'
+              linkTo='https://aicenter.mipt.ru/'
               name={t('main_burger.about')}
               handleClick={() => setIsOpen(false)}
             />

@@ -1,4 +1,5 @@
 import { useUIOptions } from 'context'
+import { useTranslation } from 'react-i18next'
 import { useParams } from 'react-router-dom'
 import {
   RIGHT_SP_IS_ACTIVE,
@@ -11,19 +12,21 @@ import { useResize } from 'hooks/useResize'
 import { trigger } from 'utils/events'
 import { BurgerMenu } from 'components/BurgerMenu/BurgerMenu'
 import MobileBurgerMenu from 'components/BurgerMenu/MobileBurgerMenu/MobileBurgerMenu'
+import { Button } from 'components/Buttons'
 import DumbAssistantSP from 'components/Panels/AssistantSidePanel/DumbAssitantSP'
 import SvgIcon from 'components/SvgIcon/SvgIcon'
 import s from './Topbar.module.scss'
 import { TopbarBtn } from './components/TopbarBtn'
 
 export const Topbar = () => {
+  const { t } = useTranslation()
   const { renew } = useChat()
   const { UIOptions } = useUIOptions()
   const { vaName } = useParams()
   const { getCachedDist } = useAssistants()
   const bot = getCachedDist(vaName!)
 
-  const { isScreenXs } = useResize()
+  const { isScreenXs, isScreenMd } = useResize()
 
   const handleShare = () => {
     trigger('ShareAssistantModal', {})
@@ -40,6 +43,9 @@ export const Topbar = () => {
     renew.mutateAsync(vaName!)
   }
 
+  const { MODE } = import.meta.env
+  const url = import.meta.env[`VITE_BUILDER_REDIRECT_${MODE}`]
+
   return (
     <div className={s.topbar}>
       {isScreenXs ? <MobileBurgerMenu bot={bot!} /> : <BurgerMenu />}
@@ -48,6 +54,13 @@ export const Topbar = () => {
       <div className={s.btns}>
         {!isScreenXs ? (
           <>
+            <a href={url} rel='noopener noreferrer'>
+              <Button small theme='primary'>
+                {isScreenMd
+                  ? t('sidepanels.assistant.btns.open_db_short')
+                  : t('sidepanels.assistant.btns.open_db')}
+              </Button>
+            </a>
             <TopbarBtn
               active={UIOptions[SHARE_MODAL_IS_OPEN]}
               handleClick={handleShare}
@@ -63,12 +76,19 @@ export const Topbar = () => {
             </TopbarBtn>
           </>
         ) : (
-          <TopbarBtn
-            handleClick={handleRestartDialog}
-            disabled={!bot || renew.isLoading}
-          >
-            <SvgIcon iconName='renew' />
-          </TopbarBtn>
+          <>
+            <a href={url} rel='noopener noreferrer'>
+              <Button tiny theme='primary'>
+                {t('sidepanels.assistant.btns.open_db_short')}
+              </Button>
+            </a>
+            <TopbarBtn
+              handleClick={handleRestartDialog}
+              disabled={!bot || renew.isLoading}
+            >
+              <SvgIcon iconName='renew' />
+            </TopbarBtn>
+          </>
         )}
       </div>
     </div>
