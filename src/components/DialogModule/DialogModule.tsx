@@ -2,7 +2,7 @@ import classNames from 'classnames/bind'
 import { useUIOptions } from 'context'
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { BotInfoInterface, ChatForm, ChatHistory } from 'types/types'
 import {
   OPEN_AI_LM,
@@ -19,6 +19,7 @@ import { Loader, TextLoader } from 'components/Loaders'
 import { StartDialogModal } from 'components/Modals'
 import { MultilineInput } from 'components/MultilineInput/MultilineInput'
 import SvgIcon from 'components/SvgIcon/SvgIcon'
+import { ErrorCard } from 'components/UI/ErrorCard/ErrorCard'
 import s from './DialogModule.module.scss'
 
 type Props = {
@@ -42,8 +43,16 @@ const DialogModule = ({ bot }: Props) => {
     UIOptions[START_DIALOG_MODAL_IS_OPEN]
   )
 
-  const { send, renew, session, history, message, setSession, remoteHistory } =
-    useChat()
+  const {
+    send,
+    renew,
+    session,
+    history,
+    message,
+    setSession,
+    remoteHistory,
+    showNetworkIssue,
+  } = useChat()
 
   const updateApiKey = () => {
     const isOpenAIModelInside = () => {
@@ -139,6 +148,18 @@ const DialogModule = ({ bot }: Props) => {
             </>
           )}
         </div>
+
+        {showNetworkIssue && (
+          <div className={s.errorContainer}>
+            <ErrorCard
+              type='warning'
+              message={
+                <Trans i18nKey='sidepanels.assistant_dialog.timeout_error' />
+              }
+            />
+          </div>
+        )}
+
         <StartDialogModal />
       </div>
       <form className={s.form} onSubmit={handleSubmit(handleSend)}>

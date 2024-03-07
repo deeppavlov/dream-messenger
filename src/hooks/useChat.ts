@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { useMutation, useQueryClient } from 'react-query'
 import { useParams } from 'react-router-dom'
 import store from 'store2'
@@ -16,6 +16,9 @@ export const useChat = () => {
   const [session, setSession] = useState<SessionConfig | null>(null)
   const { history, setHistory } = useChatHistory()
   const [message, setMessage] = useState<string>('')
+
+  const [showNetworkIssue, setShowNetworkIssue] = useState(false)
+  const networkIssueTimeoutRef = useRef<number | null>(null)
 
   const client = useQueryClient()
   const { vaName } = useParams()
@@ -40,6 +43,7 @@ export const useChat = () => {
     },
     mutationFn: (data: string) => createDialogSession(data),
     onSuccess: (data, variables) => {
+      setShowNetworkIssue(false)
       const isDebug = variables === DEBUG_EN_DIST || variables === DEBUG_RU_DIST
       !isDebug && store(variables + '_session', data)
       setSession(data)
@@ -50,6 +54,11 @@ export const useChat = () => {
 
   const send = useMutation({
     onMutate: ({ text }: IPostChat) => {
+      const timeout = setTimeout(() => {
+        setShowNetworkIssue(true)
+      }, 20000)
+      networkIssueTimeoutRef.current = timeout
+
       setMessage(text)
       setHistory(state => [...state, { text, author: 'user' }])
       chatSend(bot!, history.length)
@@ -62,9 +71,17 @@ export const useChat = () => {
       ])
     },
     onError: (data: AxiosError) => {
+      setHistory(state => state.slice(0, -1))
       const needToRenew =
         data.response?.status === 404 || data.response?.status === 403
       needToRenew && renew.mutateAsync(bot?.name!)
+    },
+    onSettled: () => {
+      if (networkIssueTimeoutRef.current) {
+        clearTimeout(networkIssueTimeoutRef.current)
+        networkIssueTimeoutRef.current = null
+        setShowNetworkIssue(false)
+      }
     },
   })
 
@@ -83,5 +100,6 @@ export const useChat = () => {
     session,
     setSession,
     remoteHistory,
+    showNetworkIssue,
   }
 }

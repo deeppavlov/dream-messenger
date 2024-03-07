@@ -350,7 +350,11 @@
         "sent_for_deploy": "Sent for deploy!",
         "stop_deploy": "Stop deploy...",
         "deploy_stopped": "Deploy stopped!"
-      }
+      },
+      "warning": "Warning!",
+      "error": "Error!",
+      "dummy_error": "Something went wrong<br />Restart the system",
+      "timeout_error": "The server is taking longer than usual to process your request. There may have been a network problem.<br />Refresh the dialog session or wait for the response processing to complete."
     },
     "assistant": {
       "like_assistant": "Like this AI Assistant?",
