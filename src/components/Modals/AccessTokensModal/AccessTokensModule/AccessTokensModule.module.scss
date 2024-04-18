@@ -16,7 +16,7 @@
     }
 
     .annotations {
-      @include b1;
+      @include b3;
     }
 
     .add {
@@ -30,75 +30,26 @@
         height: 48px;
       }
     }
-
-    .tokens {
-      margin-top: -24px;
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-    }
-
-    .token {
-      @include b1;
-      width: 100%;
-      height: 37px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      border-radius: 12px;
-      padding: 0 12px;
-      background-color: $bcgrnd2;
-      color: $text1;
-    }
-
-    .tokenName {
-      @include hide_text;
-      width: 100%;
-      -webkit-line-clamp: 1;
-    }
-
-    .icon {
-      min-width: 24px;
-      min-height: 24px;
-      max-width: 24px;
-      max-height: 24px;
-      margin-right: 4px;
-    }
-
-    .right {
-      margin-left: auto;
-      display: flex;
-      align-items: center;
-      gap: 40px;
-    }
-
-    .validate {
-      @include b1;
-      color: $primary1;
-    }
-
-    .remove {
-      @include b1;
-      color: $red;
-    }
+  }
+  .checkboxString {
+    @include t4;
+    font-weight: 500;
+    display: flex;
+    gap: 8px;
+    justify-content: flex-start;
+    align-items: center;
   }
   .footer {
     display: flex;
     flex-direction: column;
-    height: 100%;
+
     justify-content: flex-end;
     .container {
       display: flex;
       flex-direction: row;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       .attention {
-        border-radius: 50%;
-        background-color: rgba(51, 0, 255, 0.1);
-        width: 40px;
-        min-width: 40px;
-        height: 40px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -106,58 +57,23 @@
           stroke: $primary1;
           @include icon_size_24;
         }
-        .annotation {
-          color: rgba(0, 0, 0, 0.7);
-          @include b1;
-        }
       }
-    }
-  }
-}
-
-@media (max-width: $medium) {
-  .module {
-    .body {
-      .add {
+      .annotation {
+        flex-grow: 1;
+        color: rgba(0, 0, 0, 0.7);
+        @include b3;
+      }
+      button {
+        white-space: nowrap;
         display: flex;
-        flex-direction: column-reverse;
-        justify-content: center;
-        align-items: flex-start;
         gap: 8px;
-        & > * {
-          max-width: 100%;
-          min-width: auto;
+
+        .buttonIcon {
+          path {
+            stroke: none;
+          }
         }
       }
     }
-  }
-}
-
-@media (max-width: $small) {
-  .module {
-    .title {
-      font-size: 20px;
-    }
-    .body {
-      .annotations {
-        @include b2;
-      }
-      .tokenName {
-        @include b2;
-      }
-    }
-
-    .footer {
-      .container {
-        display: block;
-        .attention {
-          margin-right: 12px;
-          float: left;
-        }
-      }
-    }
-  }
-  .annotation {
-    @include b2;
   }
 }
