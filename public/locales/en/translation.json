@@ -81,8 +81,18 @@
   },
   "modals": {
     "requiredKeys": {
-      "header": "{{keys}} token required",
-      "annotation": "This AI Assistant relies on <mark>{{keys}} models.</mark> Please note that it will not function properly until you provide the necessary <mark>{{keys}} key.</mark>"
+      "header_one": "Personal access token required",
+      "header_few": "Personal access tokens required",
+      "header_many": "Personal access tokens required",
+      "header_other": "Personal access tokens required",
+      "annotation_one": "Enter the personal access token for model <mark>{{models}}.</mark><br/>Please note that this AI assistant will not function properly until you provide the required token.",
+      "annotation_few": "Enter personal access tokens for the following models: <mark>{{models}}.</mark><br/>Please note that this AI assistant will not function properly until you provide the required tokens.",
+      "annotation_many": "Enter personal access tokens for the following models: <mark>{{models}}.</mark><br/>Please note that this AI assistant will not function properly until you provide the required tokens.",
+      "annotation_other": "Enter personal access tokens for the following models: <mark>{{models}}.</mark><br/>Please note that this AI assistant will not function properly until you provide the required tokens.",
+      "link_one": "Enter personal access token here",
+      "link_few": "Enter personal access tokens here",
+      "link_many": "Enter personal access tokens here",
+      "link_other": "Enter personal access tokens here"
     },
     "access_api_keys": {
       "header": "Personal access tokens",
@@ -95,8 +105,12 @@
         "label": "Choose service:",
         "placeholder": "Choose service..."
       },
-      "btns": {
-        "remove": "Remove"
+      "table": {
+        "service": "Service",
+        "model": "Model",
+        "token": "Token",
+        "status": "Status",
+        "actions": "Actions"
       },
       "toasts": {
         "token_adding": "Adding...",
@@ -113,7 +127,8 @@
           "first_line": "The API key for this AI Assistant is stored in your browser.",
           "second_line": "Please be aware that without adding the API key, the Assistant will not function as intended."
         }
-      }
+      },
+      "validateAll": "Check all"
     },
     "assistant": {
       "clone": {

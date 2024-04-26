@@ -58,5 +58,6 @@
 }
 
 .rotate {
-  transform: rotateX(180deg);
+  transform: rotateZ(180deg);
+  transition: all 2s ease-in-out;
 }

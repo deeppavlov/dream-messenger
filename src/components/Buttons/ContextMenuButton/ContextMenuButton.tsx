@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind'
 import dream from 'assets/icons/dream.svg'
-// import { trigger } from 'utils/events'
+import { trigger } from 'utils/events'
 import SvgIcon from 'components/SvgIcon/SvgIcon'
 import s from './ContextMenuButton.module.scss'
 
@@ -33,6 +33,7 @@ const ContextMenuButton = ({
     e.stopPropagation()
     if (disabled) return
     handleClick && handleClick(e)
+    trigger('CtxMenuBtnClick', {})
   }
 
   const getIconElement = (type: TMenuItem) =>
