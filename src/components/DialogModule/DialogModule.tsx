@@ -3,18 +3,23 @@ import { useUIOptions } from 'context'
 import { useEffect, useRef, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { useTranslation } from 'react-i18next'
-import { BotInfoInterface, ChatForm, ChatHistory } from 'types/types'
+import {
+  BotInfoInterface,
+  ChatForm,
+  ChatHistory,
+  IUserApiKey,
+} from 'types/types'
 import {
   KEYS_MISSING,
-  OPEN_AI_LM,
   RIGHT_SP_IS_ACTIVE,
   START_DIALOG_MODAL_IS_OPEN,
 } from 'constants/constants'
 import { useChat } from 'hooks/useChat'
 import { useChatScroll } from 'hooks/useChatScroll'
+import { useObserver } from 'hooks/useObserver'
 import { useResize } from 'hooks/useResize'
 import { getAvailableDialogSession } from 'utils/getAvailableDialogSession'
-import { getLSApiKeyByName } from 'utils/getLSApiKeys'
+import { getLSApiKeys } from 'utils/getLSApiKeys'
 import { Button } from 'components/Buttons'
 import { Loader, TextLoader } from 'components/Loaders'
 import { StartDialogModal } from 'components/Modals'
@@ -34,9 +39,15 @@ const DialogModule = ({ bot }: Props) => {
   const spIsActive = UIOptions[RIGHT_SP_IS_ACTIVE]
   const { isScreenXs, isScreenMd } = useResize()
 
-  const [apiKey, setApiKey] = useState<string | null>(null)
+  const [usedApiKeys, setUsedApiKeys] = useState<IUserApiKey[]>(
+    getLSApiKeys() || []
+  )
   const { handleSubmit, reset, control, setFocus } = useForm<ChatForm>({
     mode: 'onSubmit',
+  })
+
+  useObserver('AccessTokensChanged', () => {
+    setUsedApiKeys(getLSApiKeys() || [])
   })
 
   const [formDisabled, setFormDisabled] = useState<boolean>(
@@ -46,17 +57,6 @@ const DialogModule = ({ bot }: Props) => {
   const { send, renew, session, history, message, setSession, remoteHistory } =
     useChat()
 
-  const updateApiKey = () => {
-    const isOpenAIModelInside = () => {
-      return bot?.required_api_keys?.some(key => key?.name === 'openai_api_key')
-    }
-
-    if (isOpenAIModelInside()) {
-      const openaiApiKey = getLSApiKeyByName(OPEN_AI_LM)
-      setApiKey(openaiApiKey)
-    }
-  }
-
   useEffect(() => {
     const availableSession = getAvailableDialogSession(bot?.name!)
 
@@ -65,8 +65,6 @@ const DialogModule = ({ bot }: Props) => {
           setSession(availableSession) //FIX
         })
       : bot && renew.mutateAsync(bot?.name!)
-
-    updateApiKey()
   }, [bot])
 
   useEffect(() => {
@@ -87,13 +85,31 @@ const DialogModule = ({ bot }: Props) => {
     const isMessage = message?.replace(/\s/g, '').length > 0
     if (!isMessage || send.isLoading) return
 
+    const modelsApiKeyRequired = (bot?.used_lm_services || [])
+      .filter(({ api_key }) => api_key)
+      .map(({ name, display_name, api_key }) => ({
+        name,
+        display_name,
+        api_key,
+      }))
+
+    const keys = modelsApiKeyRequired
+      .map(({ api_key }) => api_key!.name)
+      .reduce((acc, keyName) => {
+        return {
+          ...acc,
+          [keyName]: usedApiKeys.find(k => k.api_service.name === keyName)
+            ?.token_value,
+        }
+      }, {})
+
     const id = session?.id!
 
     send.mutate(
       {
         dialog_session_id: id,
         text: message.trim(),
-        openai_api_key: apiKey ?? undefined,
+        apiKeys: keys,
       },
       {
         // onError: () => setError('chat'),

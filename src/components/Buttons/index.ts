@@ -1,11 +1,11 @@
 import Button from './Button/Button'
+// import { AddButton } from './AddButton/AddButton'
+// import { AddButtonStack } from './AddButtonStack/AddButtonStack'
+import { Checkbox } from './Checkbox/Checkbox'
 import ContextMenuButton from './ContextMenuButton/ContextMenuButton'
 import MobileBurgerBtn from './MobileBurgerBtn/MobileBurgerBtn'
 import TopbarButton from './TopbarButton/TopbarButton'
 
-// import { AddButton } from './AddButton/AddButton'
-// import { AddButtonStack } from './AddButtonStack/AddButtonStack'
-// import { Checkbox } from './Checkbox/Checkbox'
 // import EditPencilButton from './EditPencilButton/EditPencilButton'
 // import GoogleSignInButton from './GoogleSignInButton/GoogleSignInButton'
 // import { Kebab } from './Kebab/Kebab'
@@ -20,9 +20,9 @@ export {
   ContextMenuButton,
   TopbarButton,
   MobileBurgerBtn,
+  Checkbox,
   // AddButton,
   // AddButtonStack,
-  // Checkbox,
   // EditPencilButton,
   // GoogleSignInButton,
   // Kebab,

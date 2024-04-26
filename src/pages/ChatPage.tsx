@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { KEYS_MISSING } from 'constants/constants'
 import { useGaChat } from 'hooks/googleAnalytics/useGaChat'
 import { useAssistants } from 'hooks/useAssistants'
-import { checkRequiredKeysAvailability } from 'utils/checkRequiredKeysAvailability'
+import { getMissingApiKeyModels } from 'utils/getMissingApiKeyModels'
 import DialogModule from 'components/DialogModule/DialogModule'
 import { ShareAssistantModal } from 'components/Modals/ShareAssistantModal/ShareAssistantModal'
 import { Sidebar } from 'components/SideBar/Sidebar'
@@ -23,7 +23,7 @@ const ChatPage = () => {
   useEffect(() => {
     setUIOption({
       name: KEYS_MISSING,
-      value: !checkRequiredKeysAvailability(bot!),
+      value: getMissingApiKeyModels(bot),
     })
 
     bot && chatOpened(bot)

@@ -1,0 +1,21 @@
+.td {
+  padding: 12px;
+
+  &:last-of-type {
+    width: 50px;
+  }
+}
+
+.service {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+svg.buttonIcon {
+  path {
+    stroke: none;
+    fill: #000000;
+  }
+}
