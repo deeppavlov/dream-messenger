@@ -8,9 +8,11 @@
     "dev": "vite --host --mode DEV",
     "stage": "vite --host --mode STAGE",
     "prod": "vite --host --mode PROD",
+    "pre-alpha": "vite --host --mode PRE-ALPHA",
     "build-dev": "vite build --mode DEV",
     "build-stage": "vite build --mode STAGE",
     "build-prod": "vite build --mode PROD",
+    "build-pre-alpha": "vite build --mode PRE-ALPHA",
     "preview": "vite preview --port 5173",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
