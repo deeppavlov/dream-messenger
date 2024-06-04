@@ -7,7 +7,9 @@ services:
       args:
         MODE: prod
     ports:
-      - "6995:5173"
+      - "6995:80"
+    volumes:
+    - ../nginx.conf:/etc/nginx/conf.d/default.conf
     deploy:
       resources:
         limits:
