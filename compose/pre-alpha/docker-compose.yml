@@ -7,7 +7,9 @@ services:
       args:
         MODE: pre-alpha
     ports:
-      - "6955:5173"
+      - "6955:80"
+    volumes:
+      - ../nginx.conf:/etc/nginx/conf.d/default.conf
     deploy:
       resources:
         limits:
