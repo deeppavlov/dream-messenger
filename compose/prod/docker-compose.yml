@@ -7,7 +7,7 @@ services:
       args:
         MODE: prod
     ports:
-      - "6995:5173"
+      - "6995:80"
     deploy:
       resources:
         limits:
