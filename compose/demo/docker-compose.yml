@@ -9,6 +9,8 @@ services:
         MODE: demo
     ports:
       - "6994:80"
+    volumes:
+      - ../nginx.conf:/etc/nginx/conf.d/default.conf
     deploy:
       resources:
         limits:
